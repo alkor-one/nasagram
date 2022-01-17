@@ -6,11 +6,12 @@ import { PhotoService } from './services/photo.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'nasagram';
   earthDate: string = '2021-12-21';
   camera: string = 'all';
   page: number = 1;
+  photos: any[] = [];
 
   constructor(private photoService: PhotoService) {}
 
@@ -19,9 +20,10 @@ export class AppComponent implements OnInit{
   }
 
   getPhotos(earthDate: string, camera: string, page: number): void {
-    this.photoService.getPhotos(earthDate, camera, page).subscribe((response) => {
+    this.photoService.getPhotosFromApi(earthDate, camera, page).subscribe((response) => {
       if (response){
-        console.log(response);
+        this.photos = response?.photos;
+        console.log(this.photos);
       }
     });
   }
