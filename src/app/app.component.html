@@ -1,7 +1,13 @@
 <div>Hello!</div>
 <mat-icon>favorite_border</mat-icon>
 <mat-icon [style.color]="'#1a3e8c'">favorite</mat-icon>
-<div class="cards-container" fxLayout="row wrap" fxLayoutGap="20px" fxFlexAlign="space-between center">
+<div class="cards-container"
+     fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutAlign.xs="space-between center"
+     fxLayoutAlign.sm="space-evenly center"
+     fxLayoutAlign.md="space-evenly center"
+     fxLayoutAlign.lg="space-evenly center">
 <mat-card class="card" *ngFor="let photo of photos">
   <img mat-card-image class="card-image" src="{{photo?.img_src}}" alt="Photo from the Mars #{{photo?.id}}">
   <mat-card-header>

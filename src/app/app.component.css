@@ -1,11 +1,13 @@
 .cards-container {
   max-width: 1720px;
   margin: 0 auto;
+  //padding: 0 10px;
 }
 .card {
-  width: 274px;
+  width: 292px;
   margin-bottom: 20px;
-
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .card-image {
@@ -15,3 +17,4 @@
 .ml-16 {
   margin-left: 16px;
 }
+
