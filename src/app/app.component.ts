@@ -23,7 +23,18 @@ export class AppComponent implements OnInit {
     this.photoService.getPhotosFromApi(earthDate, camera, page).subscribe((response) => {
       if (response){
         this.photos = response?.photos;
+        this.photos.forEach((photo: any) => {
+          photo.isLiked = false;
+        });
         console.log(this.photos);
+      }
+    });
+  }
+
+  likePhoto(photoId: number): void {
+    this.photos.forEach((photo: any) => {
+      if(photo.id === photoId) {
+        photo.isLiked = !photo.isLiked;
       }
     });
   }

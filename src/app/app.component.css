@@ -18,3 +18,10 @@
   margin-left: 16px;
 }
 
+.ml-23 {
+  margin-left: 23px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
