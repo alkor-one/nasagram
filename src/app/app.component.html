@@ -1,6 +1,14 @@
 <div>Hello!</div>
 <mat-icon>favorite_border</mat-icon>
 <mat-icon [style.color]="'#1a3e8c'">favorite</mat-icon>
+
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Choose a date</mat-label>
+  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
 <div class="cards-container"
      fxLayout="row wrap"
      fxLayout.xs="column"
@@ -23,7 +31,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions fxLayout="row">
-    <div class="cursor-pointer ml-23 grow">
+    <div class="cursor-pointer ml-23 animation">
       <mat-icon   *ngIf="!photo?.isLiked" (click)="likePhoto(photo?.id)">favorite_border</mat-icon>
       <mat-icon   *ngIf="photo?.isLiked" [style.color]="'red'" (click)="likePhoto(photo?.id)">favorite</mat-icon>
     </div>

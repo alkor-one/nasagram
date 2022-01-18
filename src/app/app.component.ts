@@ -14,8 +14,13 @@ export class AppComponent implements OnInit {
   photos: any[] = [];
   toCookies: any[] = [];
   fromCookies: any[] = [];
+  minDate: Date;
+  maxDate: Date;
 
-  constructor(private photoService: PhotoService) {}
+  constructor(private photoService: PhotoService) {
+    this.minDate = new Date(2012, 7, 18);
+    this.maxDate = new Date(2021, 11, 21);
+  }
 
   ngOnInit(): void {
     this.getFromCookies();
