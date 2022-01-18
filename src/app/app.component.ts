@@ -60,24 +60,24 @@ export class AppComponent implements OnInit {
         photo.isLiked = !photo.isLiked;
       }
       if (photo.isLiked && !this.inArray(photo.id, this.toCookies)) {
-        this.addToToCookies(photo);
+        this.addToArray(photo, this.toCookies);
       }
       if (!photo.isLiked) {
-        this.removeFromToCookies(photo);
+        this.removeFromArray(photo, this.toCookies);
       }
     });
    document.cookie = `photos=${JSON.stringify(this.toCookies)}`;
   }
 
-  addToToCookies(photo: any): void {
-      this.toCookies.push(photo);
+  addToArray(photo: any, array: any[]): void {
+    array.push(photo);
   }
 
-  removeFromToCookies(searchingPhoto: any): void {
-    this.toCookies.forEach((photo: any) => {
-      if(searchingPhoto.id === photo.id) {
-        const index = this.toCookies.findIndex(photo => photo.id === searchingPhoto.id);
-        this.toCookies.splice(index, 1);
+  removeFromArray(elementToRemove: any, array: any[]): void {
+    array.forEach((photo: any) => {
+      if(elementToRemove.id === photo.id) {
+        const index = array.findIndex(photo => photo.id === elementToRemove.id);
+        array.splice(index, 1);
       }
     });
   }
