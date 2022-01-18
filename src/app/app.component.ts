@@ -12,10 +12,13 @@ export class AppComponent implements OnInit {
   camera: string = 'all';
   page: number = 1;
   photos: any[] = [];
+  toCookies: any[] = [];
+  fromCookies: any[] = [];
 
   constructor(private photoService: PhotoService) {}
 
   ngOnInit(): void {
+    this.getFromCookies();
     this.getPhotos(this.earthDate, this.camera, this.page);
   }
 
@@ -24,11 +27,24 @@ export class AppComponent implements OnInit {
       if (response){
         this.photos = response?.photos;
         this.photos.forEach((photo: any) => {
-          photo.isLiked = false;
+          if (this.fromCookies.length > 0) {
+            this.inCookies(photo.id) ? photo.isLiked = true : photo.isLiked = false;
+          }
+          else photo.isLiked = false;
         });
         console.log(this.photos);
       }
     });
+  }
+
+  inCookies(photoId: number): boolean {
+    let result: boolean = false;
+    this.fromCookies.forEach(photo => {
+      if(photo.id === photoId) {
+        result = true;
+      }
+    });
+    return result;
   }
 
   likePhoto(photoId: number): void {
@@ -36,6 +52,41 @@ export class AppComponent implements OnInit {
       if(photo.id === photoId) {
         photo.isLiked = !photo.isLiked;
       }
+      if (photo.isLiked && !this.inToCookies(photo.id)) {
+        this.addToToCookies(photo);
+      }
+      if (!photo.isLiked) {
+        this.removeFromToCookies(photo);
+      }
     });
+   document.cookie = `photos=${JSON.stringify(this.toCookies)}`;
+  }
+
+  addToToCookies(photo: any): void {
+      this.toCookies.push(photo);
+  }
+
+  inToCookies(photoId: number): boolean {
+    let result: boolean = false;
+    this.toCookies.forEach(photo => {
+      if(photo.id === photoId) {
+        result = true;
+      }
+    });
+    return result;
+  }
+
+  removeFromToCookies(searchingPhoto: any): void {
+    this.toCookies.forEach((photo: any) => {
+      if(searchingPhoto.id === photo.id) {
+        const index = this.toCookies.findIndex(photo => photo.id === searchingPhoto.id);
+        this.toCookies.splice(index, 1);
+      }
+    });
+  }
+
+  getFromCookies(): void {
+    const cookiesString: any = document.cookie.split("=").pop();
+    this.fromCookies = JSON.parse(cookiesString);
   }
 }
