@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
         this.photos = response?.photos;
         this.photos.forEach((photo: any) => {
           if (this.fromCookies.length > 0) {
-            this.inCookies(photo.id) ? photo.isLiked = true : photo.isLiked = false;
+            this.inArray(photo.id, this.fromCookies) ? photo.isLiked = true : photo.isLiked = false;
           }
           else photo.isLiked = false;
         });
@@ -44,10 +44,10 @@ export class AppComponent implements OnInit {
     });
   }
 
-  inCookies(photoId: number): boolean {
+  inArray(elementId: number, array: any[]): boolean {
     let result: boolean = false;
-    this.fromCookies.forEach(photo => {
-      if(photo.id === photoId) {
+    array.forEach(element => {
+      if(element.id === elementId) {
         result = true;
       }
     });
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
       if(photo.id === photoId) {
         photo.isLiked = !photo.isLiked;
       }
-      if (photo.isLiked && !this.inToCookies(photo.id)) {
+      if (photo.isLiked && !this.inArray(photo.id, this.toCookies)) {
         this.addToToCookies(photo);
       }
       if (!photo.isLiked) {
@@ -71,16 +71,6 @@ export class AppComponent implements OnInit {
 
   addToToCookies(photo: any): void {
       this.toCookies.push(photo);
-  }
-
-  inToCookies(photoId: number): boolean {
-    let result: boolean = false;
-    this.toCookies.forEach(photo => {
-      if(photo.id === photoId) {
-        result = true;
-      }
-    });
-    return result;
   }
 
   removeFromToCookies(searchingPhoto: any): void {
@@ -97,10 +87,17 @@ export class AppComponent implements OnInit {
       const cookiesString: any = document.cookie.split("=").pop();
       this.fromCookies = JSON.parse(cookiesString);
     }
+    // if(document.cookie.includes("date=")) {
+    //   const cookiesString: any = document.cookie.split("=").pop();
+    //   this.earthDate = cookiesString;
+    // }
+
   }
 
   changeDate(event: MatDatepickerInputEvent<Date>): void{
     this.earthDate = this.datePipe.transform(event.value,'yyyy-MM-dd');
     this.getPhotos(this.earthDate, this.camera, this.page);
+    // document.cookie = `date=${this.earthDate}`;
+    // console.log(document.cookie);
   }
 }
