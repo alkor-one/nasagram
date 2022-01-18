@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { DatePipe } from '@angular/common';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DatePipe } from '@angular/common';
     MatSortModule,
     MatTableModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    SharedModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
