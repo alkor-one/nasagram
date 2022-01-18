@@ -16,6 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatSelectModule,
     MatRadioModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
