@@ -9,9 +9,15 @@
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
-<div>
-  {{picker}}
-</div>
+<mat-form-field appearance="outline" class="form form-field-width select-dropdown">
+  <mat-label>Camera</mat-label>
+  <mat-select formControlName="camera" (selectionChange)="updatePhotos($event)" [value]="camera"
+  ><mat-option value="all">All cameras</mat-option>
+    <ng-container *ngFor="let camera of cameraList">
+      <mat-option value="{{ camera.name }}">{{ camera.full_name }}</mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
 
 <div class="cards-container"
      fxLayout="row wrap"

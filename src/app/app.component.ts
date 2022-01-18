@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   fromCookies: any[] = [];
   minDate: Date;
   maxDate: Date;
+  selected = 'all';
 
   constructor(private photoService: PhotoService, private datePipe: DatePipe) {
     this.minDate = new Date(2012, 7, 18);
@@ -112,10 +113,18 @@ export class AppComponent implements OnInit {
 
   }
 
-  changeDate(event: MatDatepickerInputEvent<Date>): void{
+  changeDate(event: MatDatepickerInputEvent<Date>): void {
+    this.cameraList = [];
+    this.camera = 'all';
     this.earthDate = this.datePipe.transform(event.value,'yyyy-MM-dd');
     this.getPhotos(this.earthDate, this.camera, this.page);
     // document.cookie = `date=${this.earthDate}`;
     // console.log(document.cookie);
+  }
+
+  updatePhotos(event: any): void {
+    this.camera = event.value;
+    this.getPhotos(this.earthDate, this.camera, this.page);
+   // console.log(event.value);
   }
 }
