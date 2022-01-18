@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   camera: string = 'all';
   page: number = 1;
   photos: any[] = [];
+  cameraList: any[] = [];
   toCookies: any[] = [];
   fromCookies: any[] = [];
   minDate: Date;
@@ -35,16 +36,21 @@ export class AppComponent implements OnInit {
         this.photos = response?.photos;
         this.photos.forEach((photo: any) => {
           if (this.fromCookies.length > 0) {
-            this.inArray(photo.id, this.fromCookies) ? photo.isLiked = true : photo.isLiked = false;
+            this.inArrayById(photo.id, this.fromCookies) ? photo.isLiked = true : photo.isLiked = false;
           }
           else photo.isLiked = false;
+          if (!this.inArrayByCamera(photo.camera.name, this.cameraList)){
+            let cameraObject = { name : photo.camera.name, full_name : photo.camera.full_name };
+            this.addToArray(cameraObject, this.cameraList);
+          }
         });
         console.log(this.photos);
+        console.log(this.cameraList);
       }
     });
   }
 
-  inArray(elementId: number, array: any[]): boolean {
+  inArrayById(elementId: any, array: any[]): boolean {
     let result: boolean = false;
     array.forEach(element => {
       if(element.id === elementId) {
@@ -54,12 +60,24 @@ export class AppComponent implements OnInit {
     return result;
   }
 
+  inArrayByCamera(cameraName: any, array: any[]): boolean {
+    let result: boolean = false;
+    if(array.length > 0) {
+      array.forEach(element => {
+        if (element.name === cameraName) {
+          result = true;
+        }
+      });
+    }
+    return result;
+  }
+
   likePhoto(photoId: number): void {
     this.photos.forEach((photo: any) => {
       if(photo.id === photoId) {
         photo.isLiked = !photo.isLiked;
       }
-      if (photo.isLiked && !this.inArray(photo.id, this.toCookies)) {
+      if (photo.isLiked && !this.inArrayById(photo.id, this.toCookies)) {
         this.addToArray(photo, this.toCookies);
       }
       if (!photo.isLiked) {
@@ -69,8 +87,8 @@ export class AppComponent implements OnInit {
    document.cookie = `photos=${JSON.stringify(this.toCookies)}`;
   }
 
-  addToArray(photo: any, array: any[]): void {
-    array.push(photo);
+  addToArray(element: any, array: any[]): void {
+    array.push(element);
   }
 
   removeFromArray(elementToRemove: any, array: any[]): void {
