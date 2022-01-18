@@ -86,7 +86,9 @@ export class AppComponent implements OnInit {
   }
 
   getFromCookies(): void {
-    const cookiesString: any = document.cookie.split("=").pop();
-    this.fromCookies = JSON.parse(cookiesString);
+    if(document.cookie.includes("photos=")) {
+      const cookiesString: any = document.cookie.split("=").pop();
+      this.fromCookies = JSON.parse(cookiesString);
+    }
   }
 }
