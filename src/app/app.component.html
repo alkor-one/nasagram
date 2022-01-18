@@ -23,9 +23,9 @@
     </p>
   </mat-card-content>
   <mat-card-actions fxLayout="row">
-    <div class="cursor-pointer ml-23">
-      <mat-icon  *ngIf="!photo?.isLiked" (click)="likePhoto(photo?.id)">favorite_border</mat-icon>
-      <mat-icon  *ngIf="photo?.isLiked" [style.color]="'red'" (click)="likePhoto(photo?.id)">favorite</mat-icon>
+    <div class="cursor-pointer ml-23 grow">
+      <mat-icon   *ngIf="!photo?.isLiked" (click)="likePhoto(photo?.id)">favorite_border</mat-icon>
+      <mat-icon   *ngIf="photo?.isLiked" [style.color]="'red'" (click)="likePhoto(photo?.id)">favorite</mat-icon>
     </div>
         <mat-icon class="cursor-pointer ml-16">share</mat-icon>
   </mat-card-actions>

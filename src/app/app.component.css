@@ -25,3 +25,10 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.grow {
+  transition: all .3s;
+}
+.grow:active {
+  transform: scale(0.6, 0.6);
+}
