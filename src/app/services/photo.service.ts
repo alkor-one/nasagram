@@ -12,13 +12,21 @@ export class PhotoService {
 
   constructor(private http: HttpClient) {}
 
-  getPhotosFromApi(earthDate: string | null, camera: string, page: number): Observable<any> {
+  getPhotosFromApi(earthDate: string | null, camera?: string, page?: number): Observable<any> {
     if (camera === 'all')
       return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&page=${page}&api_key=${this.apiKey}`);
+    else if (!page) {
+      console.log("no page API works")
+      return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&camera=${camera}&api_key=${this.apiKey}`);
+    }
     else return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&camera=${camera}&page=${page}&api_key=${this.apiKey}`);
   }
 
   getAllPhotos(earthDate: string | null): Observable<any> {
     return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&api_key=${this.apiKey}`);
   }
+
+  // getPhotosByCamera(earthDate: string | null, camera: string): Observable<any> {
+  //   return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&camera=${camera}&api_key=${this.apiKey}`);
+  // }
 }
