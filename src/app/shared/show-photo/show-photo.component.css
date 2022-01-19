@@ -1,0 +1,17 @@
+.cancel {
+  margin-bottom: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all .5s;
+}
+
+.cancel:hover {
+  background-color: #f5f5f5;
+  transform: rotate(180deg);
+}
+
+.bigPhoto {
+  border-radius: 8px;
+}
+

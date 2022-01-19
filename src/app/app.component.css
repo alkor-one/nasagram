@@ -22,9 +22,7 @@
   margin-left: 23px;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
+
 
 .animation {
   transition: all .3s;

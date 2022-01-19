@@ -27,7 +27,11 @@
      fxLayoutAlign.md="space-evenly center"
      fxLayoutAlign.lg="space-evenly center">
 <mat-card class="card" *ngFor="let photo of photos">
-  <img mat-card-image class="card-image cursor-pointer" src="{{photo?.img_src}}" alt="Photo from the Mars #{{photo?.id}}">
+  <img mat-card-image
+       class="card-image cursor-pointer"
+       src="{{photo?.img_src}}"
+       alt="Photo from the Mars #{{photo?.id}}"
+       (click)="showPhoto(photo?.img_src)"/>
   <mat-card-header>
     <mat-card-title>Photo: {{photo?.id}}</mat-card-title>
     <mat-card-subtitle>{{photo?.camera?.full_name}}</mat-card-subtitle>

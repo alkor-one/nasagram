@@ -1,0 +1,8 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="end start">
+    <div fxLayoutAlign="center center" class="cancel cursor-pointer" (click)="dialogRef?.close()">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <img *ngIf="photoUrl" class="bigPhoto" src="{{ photoUrl }}" alt="Sellable image" />
+</div>

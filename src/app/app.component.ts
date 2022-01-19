@@ -2,6 +2,8 @@ import { Component, OnInit  } from '@angular/core';
 import { PhotoService } from './services/photo.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ShowPhotoComponent } from "./shared/show-photo/show-photo.component";
 
 @Component({
   selector: 'app-root',
@@ -22,7 +24,7 @@ export class AppComponent implements OnInit {
   selected = 'all';
   totalCount: number | undefined;
 
-  constructor(private photoService: PhotoService, private datePipe: DatePipe) {
+  constructor(private photoService: PhotoService, private datePipe: DatePipe, private dialog: MatDialog) {
     this.minDate = new Date(2012, 7, 18);
     this.maxDate = new Date(2021, 11, 21);
   }
@@ -144,5 +146,17 @@ export class AppComponent implements OnInit {
         }
       });
     }
+  }
+
+  public showPhoto(photoUrl?: string): void {
+    const dialog = this.dialog.open(ShowPhotoComponent, {
+      data: { photoUrl },
+      panelClass: 'show-photo-dialog',
+    });
+    // dialog.afterClosed().subscribe((res) => {
+    //   if (res) {
+    //     this.getSellablesList(this.selectedCategory);
+    //   }
+    // });
   }
 }
