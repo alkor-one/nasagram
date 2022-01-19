@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     this.getTotalPages(this.earthDate);
   }
 
-  getPhotos(earthDate: string | null, camera?: string, page?: number): void {
+  getPhotos(earthDate: string | null, camera: string, page: number): void {
     this.photoService.getPhotosPerPage(earthDate, camera, page).subscribe((response) => {
       if (response){
         this.photos = response?.photos;

@@ -12,7 +12,7 @@ export class PhotoService {
 
   constructor(private http: HttpClient) {}
 
-  getPhotosPerPage(earthDate: string | null, camera?: string, page?: number): Observable<any> {
+  getPhotosPerPage(earthDate: string | null, camera: string, page: number): Observable<any> {
     if (camera === 'all')
       return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&page=${page}&api_key=${this.apiKey}`);
     else return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&camera=${camera}&page=${page}&api_key=${this.apiKey}`);

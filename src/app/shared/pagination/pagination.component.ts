@@ -52,8 +52,8 @@ export class PaginationComponent implements OnChanges {
       }
     } else if (page < middleOfPages && this.pageLimitIndexStart !== 0) {
       if (this.pageLimitIndexStart - (middleOfPages - page) < 0) {
+        this.pageLimitIndexEnd = this.pageLimitIndexEnd - this.pageLimitIndexStart;
         this.pageLimitIndexStart = 0;
-        this.pageLimitIndexEnd = this.pageLimitIndexEnd - 1;
       } else {
         this.pageLimitIndexStart = this.pageLimitIndexStart - (middleOfPages - page);
         this.pageLimitIndexEnd = this.pageLimitIndexEnd - (middleOfPages - page);
