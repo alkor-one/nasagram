@@ -51,7 +51,7 @@
 </div>
 
 <pagination
-  *ngIf="totalCount && camera === 'all'"
+  *ngIf="totalCount"
   [page]="page"
   [totalCount]="totalCount"
   (sendPageToParent)="changePage($event)"

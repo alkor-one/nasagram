@@ -21,9 +21,7 @@ export class PaginationComponent implements OnChanges {
     if (this.viewPortWidth < 650) {
       this.pageLimitIndexEnd = 3;
     }
-    console.log(this.totalCount);
     this.calculatePages();
-    console.log(this.totalPages.length);
     this.switchPages(this.page);
   }
 

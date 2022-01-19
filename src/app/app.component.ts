@@ -34,11 +34,9 @@ export class AppComponent implements OnInit {
   }
 
   getPhotos(earthDate: string | null, camera?: string, page?: number): void {
-    this.photoService.getPhotosFromApi(earthDate, camera, page).subscribe((response) => {
+    this.photoService.getPhotosPerPage(earthDate, camera, page).subscribe((response) => {
       if (response){
         this.photos = response?.photos;
-        //if(!page)
-         // this.totalCount = this.photos.length;
         this.photos.forEach((photo: any) => {
           if (this.fromCookies.length > 0) {
             this.inArrayById(photo.id, this.fromCookies) ? photo.isLiked = true : photo.isLiked = false;
@@ -49,12 +47,8 @@ export class AppComponent implements OnInit {
             this.addToArray(cameraObject, this.cameraList);
           }
         });
-         console.log("app:" + this.photos.length);
-        // console.log(this.totalCount);
-        // console.log(this.cameraList);
       }
     });
-    //if(page) {this.totalCount = this.photos.length;}
   }
 
   inArrayById(elementId: any, array: any[]): boolean {
@@ -81,7 +75,7 @@ export class AppComponent implements OnInit {
 
   likePhoto(photoId: number): void {
     this.photos.forEach((photo: any) => {
-      if(photo.id === photoId) {
+      if (photo.id === photoId) {
         photo.isLiked = !photo.isLiked;
       }
       if (photo.isLiked && !this.inArrayById(photo.id, this.toCookies)) {
@@ -112,38 +106,23 @@ export class AppComponent implements OnInit {
       const cookiesString: any = document.cookie.split("=").pop();
       this.fromCookies = JSON.parse(cookiesString);
     }
-    // if(document.cookie.includes("date=")) {
-    //   const cookiesString: any = document.cookie.split("=").pop();
-    //   this.earthDate = cookiesString;
-    // }
-
   }
 
   changeDate(event: MatDatepickerInputEvent<Date>): void {
     this.cameraList = [];
     this.camera = 'all';
     this.earthDate = this.datePipe.transform(event.value,'yyyy-MM-dd');
-    //this.getPhotos(this.earthDate, this.camera, this.page);
     this.getTotalPages(this.earthDate);
     this.changePage(1);
-   // console.log(this.page);
-
-    // document.cookie = `date=${this.earthDate}`;
-    // console.log(document.cookie);
   }
 
   updatePhotos(event: any): void {
     this.camera = event.value;
+    this.page = 1;
     if (event.value === 'all') {
       this.getTotalPages(this.earthDate);
-    }
-    this.getPhotos(this.earthDate, this.camera);
-    //else {
-      // this.page = 1;
-      // this.totalCount = 25;
-
-    //}
-   // console.log(event.value);
+    } else this.getTotalPages(this.earthDate, this.camera);
+    this.getPhotos(this.earthDate, this.camera, this.page);
   }
 
     changePage(pageFromPagination: number): void {
@@ -151,11 +130,19 @@ export class AppComponent implements OnInit {
     this.getPhotos(this.earthDate, this.camera, this.page);
   }
 
-  getTotalPages(earthDate: string | null): void {
-    this.photoService.getAllPhotos(earthDate).subscribe((response) => {
-      if (response) {
-        this.totalCount = response?.photos.length;
-      }
+  getTotalPages(earthDate: string | null, camera?: string): void {
+    if(camera){
+      this.photoService.getPhotosByCamera(earthDate, camera).subscribe((response) => {
+        if (response) {
+          this.totalCount = response?.photos.length;
+        }
       });
+    } else {
+      this.photoService.getAllPhotosByDate(earthDate).subscribe((response) => {
+        if (response) {
+          this.totalCount = response?.photos.length;
+        }
+      });
+    }
   }
 }
