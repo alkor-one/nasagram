@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
   selected = 'all';
+  totalCount: number | undefined;
 
   constructor(private photoService: PhotoService, private datePipe: DatePipe) {
     this.minDate = new Date(2012, 7, 18);
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getFromCookies();
     this.getPhotos(this.earthDate, this.camera, this.page);
+    this.getTotalPages(this.earthDate);
   }
 
   getPhotos(earthDate: string | null, camera: string, page: number): void {
@@ -117,7 +119,11 @@ export class AppComponent implements OnInit {
     this.cameraList = [];
     this.camera = 'all';
     this.earthDate = this.datePipe.transform(event.value,'yyyy-MM-dd');
-    this.getPhotos(this.earthDate, this.camera, this.page);
+    //this.getPhotos(this.earthDate, this.camera, this.page);
+    this.getTotalPages(this.earthDate);
+    this.changePage(1);
+    console.log(this.page);
+
     // document.cookie = `date=${this.earthDate}`;
     // console.log(document.cookie);
   }
@@ -126,5 +132,18 @@ export class AppComponent implements OnInit {
     this.camera = event.value;
     this.getPhotos(this.earthDate, this.camera, this.page);
    // console.log(event.value);
+  }
+
+    changePage(pageFromPagination: number): void {
+    this.page = pageFromPagination;
+    this.getPhotos(this.earthDate, this.camera, this.page);
+  }
+
+  getTotalPages(earthDate: string | null): void {
+    this.photoService.getAllPhotos(earthDate).subscribe((response) => {
+      if (response) {
+        this.totalCount = response?.photos.length;
+      }
+      });
   }
 }

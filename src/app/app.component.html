@@ -49,3 +49,10 @@
   </mat-card-actions>
 </mat-card>
 </div>
+
+<pagination
+  *ngIf="totalCount"
+  [page]="page"
+  [totalCount]="totalCount"
+  (sendPageToParent)="changePage($event)"
+></pagination>

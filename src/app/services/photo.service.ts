@@ -17,4 +17,8 @@ export class PhotoService {
       return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&page=${page}&api_key=${this.apiKey}`);
     else return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&camera=${camera}&page=${page}&api_key=${this.apiKey}`);
   }
+
+  getAllPhotos(earthDate: string | null): Observable<any> {
+    return this.http.get(`${this.baseApiUrl}?earth_date=${earthDate}&api_key=${this.apiKey}`);
+  }
 }
