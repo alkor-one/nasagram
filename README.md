@@ -1,5 +1,31 @@
 # Spacestagram
 
+## From Mars with love!
+
+For this challenge I chose Mars Rover Photos API:
+
+https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=DEMO_KEY
+
+## Implemented features:
+
+- Getting photos by date between 2012-08-18 and 2021-12-21
+
+- Getting/filter photos by camera name
+
+- Pagination with moving numbers
+
+- Click on any image opens bigger image version in dialog
+
+- Click on share icon copies image url to the clip board
+
+- Click/unclick on like icon saves/unsaves info in cookies
+
+- Icons are animated
+
+Author: Oleksandr Korotkov
+
+## Auto generated info
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
 
 ## Development server
