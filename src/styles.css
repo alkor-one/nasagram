@@ -13,13 +13,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .show-photo-dialog .mat-dialog-container {
   border-radius: 8px !important;
-  width: 40vw !important;
+  width: 50vw !important;
   max-height: 90vh !important;
 }
 
 @media screen and (max-width: 950px) {
   .show-photo-dialog .mat-dialog-container {
     width: 80vw !important;
+  }
+}
+
+@media screen and (min-width: 1921px) {
+  .show-photo-dialog .mat-dialog-container {
+    width: 35vw !important;
   }
 }
 

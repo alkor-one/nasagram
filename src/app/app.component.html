@@ -49,7 +49,7 @@
       <mat-icon   *ngIf="!photo?.isLiked" (click)="likePhoto(photo?.id)">favorite_border</mat-icon>
       <mat-icon   *ngIf="photo?.isLiked" [style.color]="'red'" (click)="likePhoto(photo?.id)">favorite</mat-icon>
     </div>
-        <mat-icon class="cursor-pointer ml-16">share</mat-icon>
+        <mat-icon class="cursor-pointer animation ml-16" (click)="copyToClipBoard(photo?.img_src)">share</mat-icon>
   </mat-card-actions>
 </mat-card>
 </div>

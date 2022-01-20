@@ -4,6 +4,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowPhotoComponent } from "./shared/show-photo/show-photo.component";
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -23,8 +24,10 @@ export class AppComponent implements OnInit {
   maxDate: Date;
   selected = 'all';
   totalCount: number | undefined;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  constructor(private photoService: PhotoService, private datePipe: DatePipe, private dialog: MatDialog) {
+  constructor(private photoService: PhotoService, private datePipe: DatePipe, private dialog: MatDialog, private _snackBar: MatSnackBar) {
     this.minDate = new Date(2012, 7, 18);
     this.maxDate = new Date(2021, 11, 21);
   }
@@ -153,10 +156,19 @@ export class AppComponent implements OnInit {
       data: { photoUrl },
       panelClass: 'show-photo-dialog',
     });
-    // dialog.afterClosed().subscribe((res) => {
-    //   if (res) {
-    //     this.getSellablesList(this.selectedCategory);
-    //   }
-    // });
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Photo link copied to clipboard!', 'Close', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
+  copyToClipBoard(url: string): void {
+    if (url) {
+      navigator.clipboard.writeText(url);
+      this.openSnackBar();
+    }
   }
 }

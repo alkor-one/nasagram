@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { DatePipe } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SharedModule } from './shared/shared.module';
     MatTableModule,
     MatSelectModule,
     MatRadioModule,
-    SharedModule
+    SharedModule,
+    MatSnackBarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
