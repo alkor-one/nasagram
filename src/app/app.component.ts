@@ -12,7 +12,6 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'nasagram';
   earthDate: string | null = '2021-12-21';
   camera: string = 'all';
   page: number = 1;

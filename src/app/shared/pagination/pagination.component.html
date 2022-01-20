@@ -4,7 +4,7 @@
   <div
     *ngIf="page > 1"
     [style.backgroundColor]="'#e6e6e6'"
-    class="paginator-btn pointerCursor"
+    class="paginator-btn cursor-pointer"
     fxLayoutAlign="center center"
     (click)="getContent(page - 1); page = page - 1; switchPages(page)"
   >
@@ -15,7 +15,7 @@
     [style.color]="pageNumber === page ? 'white' : '#757575'"
     [style.backgroundColor]="pageNumber === page ? '#757575' : '#e6e6e6'"
     (click)="getContent(pageNumber); page = pageNumber; switchPages(page)"
-    class="paginator-btn pointerCursor"
+    class="paginator-btn cursor-pointer"
     fxLayoutAlign="center center"
   >
     {{ pageNumber }}
@@ -24,7 +24,7 @@
   <div
     *ngIf="totalPages.length !== page"
     [style.backgroundColor]="'#e6e6e6'"
-    class="pointerCursor paginator-btn"
+    class="cursor-pointer paginator-btn"
     fxLayoutAlign="center center"
     (click)="getContent(page + 1); page = page + 1; switchPages(page)"
   >

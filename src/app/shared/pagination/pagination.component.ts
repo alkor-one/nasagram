@@ -31,9 +31,11 @@ export class PaginationComponent implements OnChanges {
 
   // Switch page numbers if the page number goes above or below than the middle page number of the row
   public switchPages(page: number): void {
-    if (page === 1){
+    if (page === 1 && this.viewPortWidth > 650){
       this.pageLimitIndexStart = 0;
       this.pageLimitIndexEnd = 10;
+    } else if (page === 1 && this.viewPortWidth < 650) {
+      this.pageLimitIndexEnd = 3;
     }
     if (this.pageLimitIndexEnd > this.totalPages.length) {
       this.pageLimitIndexEnd = this.totalPages.length;
