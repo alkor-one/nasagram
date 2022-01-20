@@ -1,7 +1,11 @@
+.wrapper {
+  background-color: #fafafa;
+}
+
 .cards-container {
   max-width: 1720px;
   margin: 0 auto;
-  //padding: 0 10px;
+
 }
 .card {
   width: 292px;
@@ -23,10 +27,46 @@
 }
 
 
-
 .animation {
   transition: all .3s;
 }
+
 .animation:active {
   transform: scale(0.6, 0.6);
+}
+
+.header {
+  height: 80px;
+  background-color: #ffffff;
+  border-bottom: 2px solid #e7e7e7;
+  margin-bottom: 24px;
+}
+
+.logo {
+  font-family: 'DM Serif Text', serif;
+  /*font-family: 'Nerko One', cursive;*/
+  font-size: 32px;
+  margin-left: 10px;
+  color: #221f20;
+}
+
+.mat-form-field {
+  margin-top: 12px;
+}
+
+.camera-list {
+  margin-right: 10px;
+  margin-left: 24px;
+}
+
+.date-picker {
+
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: white;
+}
+
+::ng-deep .mat-form-field-underline {
+  color: #e0e0e0;
 }

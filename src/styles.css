@@ -17,6 +17,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   max-height: 90vh !important;
 }
 
+.pb-20 {
+  padding-bottom: 20px;
+}
+
 @media screen and (max-width: 950px) {
   .show-photo-dialog .mat-dialog-container {
     width: 80vw !important;

@@ -1,19 +1,19 @@
 <!---------------------      Pagination starts here     ------------------->
 
-<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px"   class="pb-20">
   <div
     *ngIf="page > 1"
-    [style.backgroundColor]="'#f9f7f7'"
+    [style.backgroundColor]="'#e6e6e6'"
     class="paginator-btn pointerCursor"
     fxLayoutAlign="center center"
     (click)="getContent(page - 1); page = page - 1; switchPages(page)"
   >
-    <mat-icon [style.color]="'#676d78'">chevron_left</mat-icon>
+    <mat-icon [style.color]="'#757575'">chevron_left</mat-icon>
   </div>
   <div
     *ngFor='let pageNumber of totalPages.slice(pageLimitIndexStart, pageLimitIndexEnd)'
-    [style.color]="pageNumber === page ? 'white' : '#676d78'"
-    [style.backgroundColor]="pageNumber === page ? '#e07a5f' : '#f9f7f7'"
+    [style.color]="pageNumber === page ? 'white' : '#757575'"
+    [style.backgroundColor]="pageNumber === page ? '#757575' : '#e6e6e6'"
     (click)="getContent(pageNumber); page = pageNumber; switchPages(page)"
     class="paginator-btn pointerCursor"
     fxLayoutAlign="center center"
@@ -23,11 +23,11 @@
 
   <div
     *ngIf="totalPages.length !== page"
-    [style.backgroundColor]="'#f9f7f7'"
+    [style.backgroundColor]="'#e6e6e6'"
     class="pointerCursor paginator-btn"
     fxLayoutAlign="center center"
     (click)="getContent(page + 1); page = page + 1; switchPages(page)"
   >
-    <mat-icon [style.color]="'#676d78'">chevron_right</mat-icon>
+    <mat-icon [style.color]="'#757575'">chevron_right</mat-icon>
   </div>
 </div>
