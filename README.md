@@ -2,7 +2,7 @@
 
 ## From Mars with love!
 
-For this challenge I chose Mars Rover Photos API:
+For this challenge I've chosen Mars Rover Photos API:
 
 https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=DEMO_KEY
 
@@ -10,7 +10,7 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-
 
 - Getting photos by date between 2012-08-18 and 2021-12-21
 
-- Getting/filter photos by camera name
+- Getting/filtering photos by camera name
 
 - Pagination with moving numbers
 
