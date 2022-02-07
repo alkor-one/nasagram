@@ -6,6 +6,7 @@
   max-width: 1720px;
   margin: 0 auto;
 }
+
 .card {
   width: 292px;
   margin-bottom: 20px;
@@ -25,6 +26,10 @@
   margin-left: 23px;
 }
 
+.mb-24 {
+  margin-bottom: 24px;
+}
+
 .animation {
   transition: all 0.3s;
 }
@@ -41,10 +46,28 @@
 }
 
 .logo {
-  font-family: 'DM Serif Text', serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 32px;
   margin-left: 10px;
   color: #221f20;
+}
+
+h1 {
+  font-family: 'Changa', sans-serif;
+  font-size: 52px;
+  font-weight: 600;
+  margin-left: 10px;
+  color: #221f20;
+  margin-top: 24px;
+}
+
+li {
+  font-family: 'Changa', sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  margin-left: 10px;
+  color: #221f20;
+  margin-top: 24px;
 }
 
 .mat-form-field {
@@ -81,6 +104,21 @@
     padding-right: 24px;
     padding-left: 24px;
   }
+  .cards-container {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .mat-container {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+  li {
+    font-size: 18px;
+  }
 }
 
 @media screen and (min-width: 600px) and (max-width: 1720px) {
@@ -90,13 +128,3 @@
   }
 }
 
-@media screen and (max-width: 760px) {
-  .cards-container {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  .mat-container {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-}

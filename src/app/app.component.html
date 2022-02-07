@@ -9,7 +9,7 @@
       fxLayoutAlign.xs="space-between center"
     >
       <div class="logo cursor-pointer" onclick="window.open('https://www.linkedin.com/in/oleksandr-korotkov/','myProfile');">
-        Spacestagram
+        The Martian
       </div>
       <div fxLayout.xs="column" class="mat-container">
         <mat-form-field class="date-picker" appearance="fill">
@@ -26,7 +26,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="camera-list">
-          <mat-label>Camera</mat-label>
+          <mat-label>Choose a camera</mat-label>
           <mat-select
             (selectionChange)="updatePhotos($event)"
             [value]="camera"
@@ -38,6 +38,20 @@
         </mat-form-field>
       </div>
     </div>
+  </div>
+  <div class="cards-container"
+       fxLayout="column"
+       fxLayoutAlign.xs="space-between center"
+       fxLayoutAlign.sm="space-evenly center"
+       fxLayoutAlign.md="space-evenly center"
+       fxLayoutAlign.lg="space-evenly center">
+    <h1>Explore Photos From Mars</h1>
+    <ul>
+      <li>Filter photos by date from 2012-08-18 to 2021-12-21</li>
+      <li>Filter photos by the camera name</li>
+      <li>Click on the image to open big one in the popup</li>
+      <li class="mb-24">Click on the share icon to copy image url for sharing</li>
+    </ul>
   </div>
 
   <div
