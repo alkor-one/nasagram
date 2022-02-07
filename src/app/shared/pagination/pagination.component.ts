@@ -19,6 +19,7 @@ export class PaginationComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.viewPortWidth < 650) {
+      this.pageLimitIndexStart = 0;
       this.pageLimitIndexEnd = 3;
     }
     this.calculatePages();
@@ -51,6 +52,7 @@ export class PaginationComponent implements OnChanges {
       this.pageLimitIndexStart = 0;
       this.pageLimitIndexEnd = 10;
     } else if (page === 1 && this.viewPortWidth < 650) {
+      this.pageLimitIndexStart = 0;
       this.pageLimitIndexEnd = 3;
     }
   }
