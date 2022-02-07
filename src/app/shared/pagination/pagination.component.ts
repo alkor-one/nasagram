@@ -30,6 +30,17 @@ export class PaginationComponent implements OnChanges {
     this.sendPageToParent.emit(page);
   }
 
+  // Calculating of the amount of pages from total items (total count) / items per page (limit)
+  public calculatePages(): void {
+    this.totalPages.length = 0;
+    if (this.totalCount) {
+      const totalPagesNumber = Math.ceil(this.totalCount / this.limit);
+      let pageNumber = 1;
+      for (let i = 0; i < totalPagesNumber; i++) {
+        this.totalPages.push(pageNumber++);
+      }
+    }
+  }
 
   // Switch page numbers if the page number goes above or below than the middle page number of the row
   public switchPages(page: number): void {
@@ -78,15 +89,4 @@ export class PaginationComponent implements OnChanges {
     }
   }
 
-  // Calculating of the amount of pages from total items (total count) / items per page (limit)
-  public calculatePages(): void {
-    this.totalPages.length = 0;
-    if (this.totalCount) {
-      const totalPagesNumber = Math.ceil(this.totalCount / this.limit);
-      let pageNumber = 1;
-      for (let i = 0; i < totalPagesNumber; i++) {
-        this.totalPages.push(pageNumber++);
-      }
-    }
-  }
 }
